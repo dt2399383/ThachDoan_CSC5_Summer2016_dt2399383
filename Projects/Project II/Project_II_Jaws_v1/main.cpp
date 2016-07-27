@@ -23,6 +23,7 @@ using namespace std;//Namespace of the System Libraries
 void menu();
 void intro();
 float songChk();
+float battle(float, float);
 //Execution Begins Here!
 
 
@@ -96,31 +97,8 @@ int main(int argc, char** argv) {
                             cout<<"You decide to attack the shark!"<<endl;
                             cout<<"Enter any key to continue"<<endl;
                             cin>>anyKey;
-                            cout<<"How do you want to attack the shark?"<<endl;
-                            cout<<"(1) Harpoon"<<endl;
-                            cout<<"(2) Pistol"<<endl;
-                            cout<<"(3) Attach Barrel"<<endl;
-                            cin>>atkType;
+                            battle(sHealth, pAtk);
                             
-                            die=rand()%6+1; //Random number [1,6]
-
-                            if(atkType=='1'){
-                                sHealth = sHealth-(pAtk+harpoon)+(pAtk*die/10);
-                                cout<<"You attack the shark with a harpoon and do "
-                                        <<pAtk+harpoon<<" damage!"<<endl;
-                            }
-                            if(atkType=='2'){
-                                sHealth = sHealth-(pAtk+pistol)+(pAtk*die/10);
-                                cout<<"You attack the shark with a pistol and do "
-                                        <<pAtk+pistol<<" damage!"<<endl;
-                            }
-                            if(atkType=='3'){
-                                pAtk += 10;
-                                sHealth = sHealth-(pAtk+(pAtk*barrel)+(pAtk*die/10));
-                                cout<<"You attach the shark with a barrel and do "
-                                        <<pAtk+(pAtk*barrel)<<" damage!"<<endl;
-                            }
-                            cout<<"Shark Health: "<<setprecision(4)<<sHealth<<endl;
                         }else if(sHealth <= 500 && sHealth != 0){
                             cout<<"The shark is nearing death!"<<endl;
 
@@ -346,6 +324,42 @@ int main(int argc, char** argv) {
     out<<endl<<fName<<" "<<lName<<" Game Stats"<<endl;
     //Exit Stage Right!
     return 0;
+}
+float battle(float &sHealth, float &pAtk){
+    unsigned int harpoon = 30;
+    unsigned int pistol = 20;
+    unsigned int barrel = 2;
+    
+
+    unsigned char die;
+
+    char atkType;
+    cout<<"How do you want to attack the shark?"<<endl;
+    cout<<"(1) Harpoon"<<endl;
+    cout<<"(2) Pistol"<<endl;
+    cout<<"(3) Attach Barrel"<<endl;
+    cin>>atkType;
+
+    die=rand()%6+1; //Random number [1,6]
+
+    if(atkType=='1'){
+        sHealth = sHealth-(pAtk+harpoon)+(pAtk*die/10);
+        cout<<"You attack the shark with a harpoon and do "
+                <<pAtk+harpoon<<" damage!"<<endl;
+    }
+    if(atkType=='2'){
+        sHealth = sHealth-(pAtk+pistol)+(pAtk*die/10);
+        cout<<"You attack the shark with a pistol and do "
+                <<pAtk+pistol<<" damage!"<<endl;
+    }
+    if(atkType=='3'){
+        pAtk += 10;
+        sHealth = sHealth-(pAtk+(pAtk*barrel)+(pAtk*die/10));
+        cout<<"You attach the shark with a barrel and do "
+                <<pAtk+(pAtk*barrel)<<" damage!"<<endl;
+    }
+    cout<<"Shark Health: "<<setprecision(6)<<sHealth<<endl;
+    return sHealth;
 }
 float songChk (){
     string lyric1, lyric2;
