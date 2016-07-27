@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Project_I_Jaws_v3
+PROJECTNAME=Project_II_Jaws_v1
 
 # Active Configuration
 DEFAULTCONF=Debug
